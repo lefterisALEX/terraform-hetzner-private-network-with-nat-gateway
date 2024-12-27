@@ -1,0 +1,23 @@
+#cloud-config
+package_update: true
+package_upgrade: true
+
+runcmd:
+  - |
+    echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.d/99-tailscale.conf
+    echo 'net.ipv6.conf.all.forwarding = 1' | sudo tee -a /etc/sysctl.d/99-tailscale.conf
+    sudo sysctl -p /etc/sysctl.d/99-tailscale.conf
+    cat <<'EOF' >> /etc/systemd/network/10-enp7s0.network
+    [Match]
+    Name=enp7s0
+
+    [Network]
+    DHCP=yes
+    Gateway=192.168.100.1
+    EOF
+    echo "DNS=9.9.9.9" | tee -a /etc/systemd/resolved.conf
+    systemctl reload systemd-networkd
+    systemctl restart systemd-resolved
+    curl -fsSL https://tailscale.com/install.sh | sh
+    tailscale up --advertise-routes=${private_subnet} --accept-routes --auth-key=${tailscale_auth_key}
+
