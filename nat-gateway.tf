@@ -1,4 +1,6 @@
 resource "hcloud_server" "nat_gateway" {
+  count = var.deploy_nat_gateway ? 1 : 0
+
   name         = var.nat_gateway_name
   server_type  = var.nat_gateway_server_type
   image        = local.ubuntu_version
@@ -16,7 +18,6 @@ resource "hcloud_server" "nat_gateway" {
     ipv6_enabled = false
   }
 
-  # Userdata script: https://community.hetzner.com/tutorials/how-to-set-up-nat-for-cloud-networks#step-6---cloud-init
   user_data = templatefile("${path.module}/templates/cloud-init.yml", {
     private_subnet = var.private_subnet
   })

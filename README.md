@@ -1,12 +1,3 @@
-# private-network-with-nat-gateway 
-
-## Description
-Terraform module to create a  private network with NAT gateway and optionally a Tailscale node for VPN access. Provisions:
-- Private network (by default 192.168.100.0/24)
-- NAT Gateway node for outbound internet access
-- Tailscale node for secure remote access (optionally)
-- Firewall
-
 ## Requirements
 
 | Name | Version |
@@ -32,7 +23,6 @@ No modules.
 | [hcloud_network_route.default](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/network_route) | resource |
 | [hcloud_network_subnet.private](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/network_subnet) | resource |
 | [hcloud_server.nat_gateway](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/server) | resource |
-| [hcloud_server.vpn](https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/server) | resource |
 
 ## Inputs
 
@@ -46,14 +36,10 @@ No modules.
 | <a name="input_network_zone"></a> [network\_zone](#input\_network\_zone) | Name of the Hetzner network zone | `string` | `"eu-central"` | no |
 | <a name="input_private_subnet"></a> [private\_subnet](#input\_private\_subnet) | The IP range for the private subnet. | `string` | `"192.168.100.0/24"` | no |
 | <a name="input_ssh_keys"></a> [ssh\_keys](#input\_ssh\_keys) | List of SSH keys to associate with the servers. | `list(string)` | `[]` | no |
-| <a name="input_tailscale_auth_key"></a> [tailscale\_auth\_key](#input\_tailscale\_auth\_key) | n/a | `string` | `null` | no |
-| <a name="input_tailscale_ip"></a> [tailscale\_ip](#input\_tailscale\_ip) | The static IP to assign to the tailscale server. | `string` | `"192.168.100.3"` | no |
-| <a name="input_tailscale_server_name"></a> [tailscale\_server\_name](#input\_tailscale\_server\_name) | Name of the VPN server. | `string` | `"tailscale"` | no |
-| <a name="input_tailscale_server_type"></a> [tailscale\_server\_type](#input\_tailscale\_server\_type) | The server type of the tailscale server. | `string` | `"cx22"` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
 | <a name="output_nat_gateway_ip"></a> [nat\_gateway\_ip](#output\_nat\_gateway\_ip) | n/a |
-
+| <a name="output_private_network_id"></a> [private\_network\_id](#output\_private\_network\_id) | n/a |
