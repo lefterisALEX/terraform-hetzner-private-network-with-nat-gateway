@@ -6,7 +6,7 @@ resource "hcloud_server" "nat_gateway" {
   image        = local.ubuntu_version
   location     = var.location
   ssh_keys     = var.ssh_keys
-  firewall_ids = [hcloud_firewall.nat_gateway.id]
+  firewall_ids = [hcloud_firewall.nat_gateway[0].id]
 
   network {
     network_id = hcloud_network.private.id
