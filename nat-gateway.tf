@@ -10,7 +10,7 @@ resource "hcloud_server" "nat_gateway" {
 
   network {
     network_id = hcloud_network.private.id
-    ip         = var.nat_gateway_ip != "" ? var.nat_gateway_ip : cidrhost(var.private_subnet, -2)
+    ip         = local.nat_gateway_ip
   }
 
   public_net {

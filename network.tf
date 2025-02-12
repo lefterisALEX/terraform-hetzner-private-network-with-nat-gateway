@@ -20,7 +20,7 @@ resource "hcloud_network_route" "default" {
 
   network_id  = hcloud_network.private.id
   destination = "0.0.0.0/0"
-  gateway     = var.nat_gateway_ip
+  gateway     = local.nat_gateway_ip
 }
 
 
