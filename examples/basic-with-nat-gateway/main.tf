@@ -14,5 +14,5 @@ provider "hcloud" {
 module "hcloud_networking" {
   source = "../.."
 
-  tailscale_auth_key = var.tailscale_auth_key
+  deploy_nat_gateway = true
 }

@@ -1,5 +1,5 @@
 output "nat_gateway_ip" {
-  value = hcloud_server.nat_gateway.ipv4_address
+  value = length(hcloud_server.nat_gateway) > 0 ? hcloud_server.nat_gateway[0].ipv4_address : null
 }
 
 output "private_network_id" {
