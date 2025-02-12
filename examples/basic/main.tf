@@ -13,9 +13,4 @@ provider "hcloud" {
 
 module "hcloud_networking" {
   source = "../.."
-  
-  nat_gateway_name = "jbndc"
-  nat_gateway_ip =  "192.168.2.111"
-  nat_gateway_server_type =  "cx33"
-  deploy_nat_gateway = true
 }
