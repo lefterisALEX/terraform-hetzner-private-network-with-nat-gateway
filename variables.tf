@@ -35,32 +35,32 @@ variable "ssh_keys" {
 variable "nat_gateway_ip" {
   description = "The static IP to assign to the NAT gateway."
   type        = string
-  default     = "192.168.100.2"
+  default     = "" 
 
   validation {
-    condition     = var.deploy_nat_gateway || var.nat_gateway_ip == ""
-    error_message = "nat_gateway_ip must be set only if deploy_nat_gateway is true."
-  }
+     condition     = var.deploy_nat_gateway || var.nat_gateway_ip == ""
+     error_message = "nat_gateway_ip must be set only if deploy_nat_gateway is true."
+   }
 }
 
 variable "nat_gateway_server_type" {
   description = "The server type of the NAT gateway."
   type        = string
-  default     = "cx22"
+  default     = ""
 
   validation {
-    condition     = var.deploy_nat_gateway || var.nat_gateway_server_type == ""
-    error_message = "nat_gateway_server_type must be set only if deploy_nat_gateway is true."
-  }
+     condition     = var.deploy_nat_gateway || var.nat_gateway_server_type == ""
+     error_message = "nat_gateway_server_type must be set only if deploy_nat_gateway is true."
+   }
 }
 
 variable "nat_gateway_name" {
   description = "Name of the NAT gateway server."
   type        = string
-  default     = "nat-gateway"
+  default     = ""
 
   validation {
-    condition     = var.deploy_nat_gateway || var.nat_gateway_name == ""
-    error_message = "nat_gateway_name must be set only if deploy_nat_gateway is true."
-  }
+     condition     = var.deploy_nat_gateway || var.nat_gateway_name == ""
+     error_message = "nat_gateway_name must be set only if deploy_nat_gateway is true."
+   }
 }

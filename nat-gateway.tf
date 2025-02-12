@@ -1,8 +1,8 @@
 resource "hcloud_server" "nat_gateway" {
   count = var.deploy_nat_gateway ? 1 : 0
 
-  name         = var.nat_gateway_name
-  server_type  = var.nat_gateway_server_type
+  name         = var.nat_gateway_name != "" ? var.nat_gateway_name : "nat-gateway"
+  server_type  = var.nat_gateway_server_type != "" ? var.nat_gateway_server_type : "cx22"
   image        = local.ubuntu_version
   location     = var.location
   ssh_keys     = var.ssh_keys
@@ -10,7 +10,7 @@ resource "hcloud_server" "nat_gateway" {
 
   network {
     network_id = hcloud_network.private.id
-    ip         = var.nat_gateway_ip
+    ip         = var.nat_gateway_ip != "" ? var.nat_gateway_ip : cidrhost(var.private_subnet, -2)
   }
 
   public_net {
