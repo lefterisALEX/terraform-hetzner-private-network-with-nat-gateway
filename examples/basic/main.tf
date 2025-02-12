@@ -13,7 +13,4 @@ provider "hcloud" {
 
 module "hcloud_networking" {
   source = "../.."
-  
-  deploy_nat_gateway = false
-  nat_gateway_ip =  "192.168.2.2"
 }
