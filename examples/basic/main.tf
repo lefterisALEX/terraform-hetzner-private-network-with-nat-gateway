@@ -13,4 +13,6 @@ provider "hcloud" {
 
 module "hcloud_networking" {
   source = "../.."
+
+  private_subnet = "10.122.0.0/24"
 }
